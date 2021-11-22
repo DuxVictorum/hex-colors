@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html id="html" style="background-color: #3d8a25">
+<head>
+    <title>Random Background Color</title>
+    <script>
+        function changeColor() {
+            let colors = ["red", "green", "blue", "tomato", "chartreuse", "yellow"];
+            let randNum = Math.floor(Math.random() * colors.length);
+            let randColor = colors[randNum];
+            let bg = document.getElementById("html");
+            bg.style.backgroundColor = randColor;   
+            let colorText = bg.getAttribute("style").slice(18, -1);
+            document.getElementById("color").innerText = "Currently displaying color: " + colorText;
+        }
+        
+        // document.getElementById("html").setAttribute("style", "background-color: " + randColor);
+        
+        
+    </script>
+</head>
+
+<body>
+    <h1>Click the button below to see a new background color!</h1>
+    <p id="color">Currently displaying color: HUH?!<span></span></p>
+    <button onclick="changeColor()">Change color!</button>
+</body>
+</html>
+
