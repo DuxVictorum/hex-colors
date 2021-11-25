@@ -1,28 +1,69 @@
 <!DOCTYPE html>
-<html id="html" style="background-color: #3d8a25">
+<html>
 <head>
     <title>Random Background Color</title>
+    <style>
+        body {
+            padding: 10px 20px 10px 20px;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding: 2em;
+            top: 20%;
+        }
+        .box {
+            border: 3px black solid;
+            border-radius: 15px;
+            margin: -3em 12em 5em 12em;
+            padding: 2em;
+            /* width: 40%; */
+            top: 5em;
+            position: relative;
+            background-color: antiquewhite;
+            box-shadow: 5px 5px 20px black;
+        }
+        #color {
+            font-family: monospace;
+            font-size: 2em; 
+        }
+        #color2 {
+            font-weight: bold;
+        }
+        button {
+            display: inline-block;
+            padding: 10px;
+            font-family: Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1em;
+            border-radius: 15px;
+            background-color: white;
+            font-weight: 600;
+            border: .1em black solid;
+            margin-top: 15px;
+        }
+    </style>
     <script>
         function changeColor() {
-            let colors = ["red", "green", "blue", "tomato", "chartreuse", "yellow"];
+            // Method #1: Color randomly chosen from array
+            let colors = ["red", "green", "blue", "tomato", "chartreuse", "yellow", "coral", "mistyrose", "maroon", "forestgreen", "darkviolet", "cornflowerblue", "aliceblue", "mocassin", "gold", "darkseagreen", "peachpuff", "springgreen"];
             let randNum = Math.floor(Math.random() * colors.length);
             let randColor = colors[randNum];
-            let bg = document.getElementById("html");
+            let bg = document.getElementById("body");
             bg.style.backgroundColor = randColor;   
             let colorText = bg.getAttribute("style").slice(18, -1);
-            document.getElementById("color").innerText = "Currently displaying color: " + colorText;
+            document.getElementById("color2").innerText = colorText;
+
         }
-        
         // document.getElementById("html").setAttribute("style", "background-color: " + randColor);
-        
-        
     </script>
 </head>
 
-<body>
+<body id="body" style="background-color: lightskyblue">
     <h1>Click the button below to see a new background color!</h1>
-    <p id="color">Currently displaying color: HUH?!<span></span></p>
-    <button onclick="changeColor()">Change color!</button>
+    <div class="box">
+        <p id="color">Currently displaying color: <span id="color2">lightskyblue</span></p>
+        <button onclick="changeColor()">Change color!</button>
+    </div>
 </body>
 </html>
 
