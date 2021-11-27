@@ -42,28 +42,40 @@
             margin-top: 15px;
         }
     </style>
+</head>
+
+<body id="body" style="background-color: lightskyblue">
+    <h1>William, click the button below to see a new background color!</h1>
+    <div class="box">
+        <p id="color">Currently displaying color: <span id="color2">lightskyblue</span></p>
+        <button id="colorButton">Change color!</button>
+    </div>
+
+
     <script>
+        const colorButton = document.getElementById("colorButton");
+        colorButton.addEventListener("click", changeColor);
         function changeColor() {
+            
             // Method #1: Color randomly chosen from array
-            let colors = ["red", "green", "blue", "tomato", "chartreuse", "yellow", "coral", "mistyrose", "maroon", "forestgreen", "darkviolet", "cornflowerblue", "aliceblue", "mocassin", "gold", "darkseagreen", "peachpuff", "springgreen"];
-            let randNum = Math.floor(Math.random() * colors.length);
-            let randColor = colors[randNum];
+            // let colors = ["red", "green", "blue", "tomato", "chartreuse", "yellow", "coral", "mistyrose", "maroon", "forestgreen", "darkviolet", "cornflowerblue", "aliceblue", "mocassin", "gold", "darkseagreen", "peachpuff", "springgreen"];
+            // let randNum = Math.floor(Math.random() * colors.length);
+            // let randColor = colors[randNum];
+
+            // Method #2: Hexadecimal color code generated at random
+            let randHexNum = Math.floor(Math.random() * 16777215).toString(16);            
+            let hexColor = "#" + randHexNum;
+            console.log(hexColor);
             let bg = document.getElementById("body");
-            bg.style.backgroundColor = randColor;   
+            bg.style.backgroundColor = hexColor;   
             let colorText = bg.getAttribute("style").slice(18, -1);
-            document.getElementById("color2").innerText = colorText;
+            console.log(colorText);
+            document.getElementById("color2").innerText = hexColor;
 
         }
         // document.getElementById("html").setAttribute("style", "background-color: " + randColor);
     </script>
-</head>
 
-<body id="body" style="background-color: lightskyblue">
-    <h1>Click the button below to see a new background color!</h1>
-    <div class="box">
-        <p id="color">Currently displaying color: <span id="color2">lightskyblue</span></p>
-        <button onclick="changeColor()">Change color!</button>
-    </div>
 </body>
 </html>
 
