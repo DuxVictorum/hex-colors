@@ -41,18 +41,36 @@
             border: .1em black solid;
             margin-top: 15px;
         }
-        #choose {
-            font-family:Georgia, 'Times New Roman', Times, serif;
+        #colorButton:hover {
+            background-color: lightgray;
+        }
+        #chooseText {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             font-size: 1.3em;
         }
+        #choiceButton {
+            display: inline-block;
+            padding: 5px;
+            font-size: 1em;
+            border-radius: 10px;
+        }
+        select {
+            width: 10em;
+            font-size: 1em;
+            padding: 5px 5px;
+            border-radius: 5px;
+            color: darkslateblue;
+        }
+
     </style>
 </head>
 
 <body id="body" style="background-color: lightskyblue">
     <h1>Click the button below to see a new background color!</h1>
     <div class="box">
-        <p id="choose">Choose your color display method: </p>
+        <p id="chooseText">Choose your color display method: </p>
         <form><select name="choice">
+            <option value=""></option>
             <option value="keyword">Color keyword</option>
             <option value="hex">Hexcode color</option>
             <option value="rgb">RGB color</option>
