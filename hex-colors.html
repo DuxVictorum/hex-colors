@@ -30,7 +30,7 @@
         #color2 {
             font-weight: bold;
         }
-        button {
+        #colorButton {
             display: inline-block;
             padding: 10px;
             font-family: Tahoma, Geneva, Verdana, sans-serif;
@@ -41,36 +41,88 @@
             border: .1em black solid;
             margin-top: 15px;
         }
+        #choose {
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-size: 1.3em;
+        }
     </style>
 </head>
 
 <body id="body" style="background-color: lightskyblue">
-    <h1>William, click the button below to see a new background color!</h1>
+    <h1>Click the button below to see a new background color!</h1>
     <div class="box">
+        <p id="choose">Choose your color display method: </p>
+        <form><select name="choice">
+            <option value="keyword">Color keyword</option>
+            <option value="hex">Hexcode color</option>
+            <option value="rgb">RGB color</option>
+            <option value="hsl">HSL color</option>
+        </select>
+        <button id="choiceButton" type="submit">Select</button>
+        </form>
+        
         <p id="color">Currently displaying color: <span id="color2">lightskyblue</span></p>
         <button id="colorButton">Change color!</button>
     </div>
 
 
     <script>
+        const bg = document.getElementById("body");
+        const choice = document.querySelector("select[name=choice]");
+        const form = document.querySelector("form");
         const colorButton = document.getElementById("colorButton");
+        let method = "";
+
+        // Assign drop-down selection to 'method' variable AND prevent page reload
+        form.addEventListener("submit", event => {
+            method = choice.value;
+            event.preventDefault();
+        })
+        
         colorButton.addEventListener("click", changeColor);
         function changeColor() {
-            
-            // Method #1: Color randomly chosen from array
-            // let colors = ["red", "green", "blue", "tomato", "chartreuse", "yellow", "coral", "mistyrose", "maroon", "forestgreen", "darkviolet", "cornflowerblue", "aliceblue", "mocassin", "gold", "darkseagreen", "peachpuff", "springgreen"];
-            // let randNum = Math.floor(Math.random() * colors.length);
-            // let randColor = colors[randNum];
+            if (method === "keyword") {
+                // Method #1: Color keyword randomly chosen from array
+                let colors = ["black", "silver", "gray", "white", "maroon", "red", "purple", "fuchsia", "green", "lime", "olive", "yellow", "navy", "blue", "teal", "aqua", "aliceblue", "antiquewhite", "aquamarine", "azure", "beige", "bisque", "blanchedalmond", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "cornsilk", "crimson", "cyan", "darkblue", "darkcyan", "darkgoldenrod", "darkgray", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dodgerblue", "firebrick", "floralwhite", "forestgreen", "gainsboro", "ghostwhite", "gold", "goldenrod", "honeydew", "hotpink", "indianred", "indigo", "ivory", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lightblue", "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgray", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightslategray", "lightsteelblue", "lightyellow", "limegreen", "linen", "magenta", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "mintcream", "mistyrose", "moccasin", "navajowhite", "oldlace", "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown", "seagreen", "seashell", "sienna", "skyblue", "slateblue", "slategray", "snow", "springgreen", "steelblue", "tan", "teal", "thistle", "tomato", "turquoise", "violet", "wheat", "whitesmoke", "yellowgreen"];
+                let randNum = Math.floor(Math.random() * colors.length);
+                let randColorkeyword = colors[randNum];
+                bg.style.backgroundColor = randColorkeyword;
+                document.getElementById("color").innerHTML = "Currently displaying color: <span id='color2'></span>";
+                document.getElementById("color2").innerText = randColorkeyword;
 
-            // Method #2: Hexadecimal color code generated at random
-            let randHexNum = Math.floor(Math.random() * (0xFFFFFF + 1)).toString(16).padStart(6, '0');            
-            let hexColor = "#" + randHexNum;
-            let bg = document.getElementById("body");
-            bg.style.backgroundColor = hexColor;   
-            let colorText = bg.getAttribute("style").slice(18, -1);
-            document.getElementById("color2").innerText = hexColor;
+            } else if (method === "hex") {
+                // Method #2: Hexadecimal color code generated at random
+                let randHexNum = Math.floor(Math.random() * (0xFFFFFF + 1)).toString(16).padStart(6, '0');            
+                let hexColor = "#" + randHexNum;
+                bg.style.backgroundColor = hexColor;  
+                document.getElementById("color").innerHTML = "Currently displaying color: <span id='color2'></span>";
+                document.getElementById("color2").innerText = hexColor;
+
+            } else if (method === "rgb") {
+                // Method #3: RGB color (hexColor gets converted into RGB automatically once inserted into backgroundColor)
+                let randHexNum = Math.floor(Math.random() * (0xFFFFFF + 1)).toString(16).padStart(6, '0');            
+                let hexColor = "#" + randHexNum;
+                bg.style.backgroundColor = hexColor;  
+                document.getElementById("color").innerHTML = "Currently displaying color: <span id='color2'></span>";
+                document.getElementById("color2").innerText = bg.style.backgroundColor;
+
+            } else if (method === "hsl") {
+                // Method #4: HSL color
+                let randHue = Math.floor(Math.random() * 360 + 1);
+                let randSat = Math.floor(Math.random() * 100 + 1);
+                let randLight = Math.floor(Math.random() * 100 + 1);
+                let hslColor = "hsl(" + randHue + ", " + randSat + "%, " + randLight + "%)";
+                bg.style.backgroundColor = hslColor;  
+                document.getElementById("color").innerHTML = "Currently displaying color: <span id='color2'></span>";
+                document.getElementById("color2").innerText = hslColor;
+                console.log(bg.style.backgroundColor, hslColor);
+
+            } else {
+                // Fallback method if no selection made
+                document.getElementById("color").innerText = "Please select a method for displaying color."
+            }
         }
-        // document.getElementById("html").setAttribute("style", "background-color: " + randColor);
+
     </script>
 
 </body>
