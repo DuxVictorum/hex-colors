@@ -1,6 +1,8 @@
 # Website Background Color Generator
 This web page will generate random background colors in multiple HTML/CSS color formats.  
 
+![screenshot of keyword colors](demo-keyword.png)
+
 ## Current Features
 I decided not only to generate a random background color but also to allow the user to select which color method to use.  
 At the moment, the user can select from any of the following methods:
