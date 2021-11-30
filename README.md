@@ -11,6 +11,8 @@ At the moment, the user can select from any of the following methods:
 - RGB colors (e.g. rgb(157, 69, 172))
 - HSL colors (e.g. hsl(129, 48%, 72%))
 
+![screenshot of hexcode colors](demo-hex.png)
+
 ## Skills in Focus
 This project gave me the opportunity to practice various front-end skills across HTML, CSS, and JavaScript, including:
 - DOM manipulation
